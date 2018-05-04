@@ -8,8 +8,12 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import {DropdownList} from 'react-widgets';
 import 'react-widgets/dist/css/react-widgets.css'
+import { Card } from '../../components/Card/Card';
 //import Select from 'react-select';
 //import 'react-select/dist/react-select.css';
+//import { Card } from "../../components/Card/Card.jsx";
+import Button from "../../components/CustomButton/CustomButton.jsx";
+import URL from '../../actions/index'
 
 
 
@@ -28,35 +32,9 @@ const DropdownListField = (props) => {
 }
  
        return (
-       <DropdownList {...props} value={props.input.value} onChange={handleChange} options={options} />
+       <DropdownList {...props} value={props.input.value} onChange={handleChange}  />
        )
 }
-
-const options = [
-
-  
-  // ...
-  { value: 'Stanford University', label: 'Stanford' },
-  {value: 'Oxford University',label:'Oxford'}
-  // ...
-];
-
-// const renderSelect = field => (
-//   <div>
-//     <select {...field.input}/>
-//     {/* {field.touched && field.error && <div className="error">{field.error}</div>} */}
-//   </div>
-// );
-
-// const field = ({client}) => (
-//   <Select
-//       name="client"
-//       value="company_name"
-//       options={client}
-//       textField="company_name"
-//       onChange={val => console.log(val)}
-//   />
-// );
 
 class Form2 extends Component{
 
@@ -68,7 +46,7 @@ class Form2 extends Component{
 
     componentDidMount(){
         axios
-      .get("http://localhost:3004/clients")
+      .get(`${URL}/clients`)
       .then(response => {
 
         // create an array of contacts only with relevant data
@@ -121,6 +99,7 @@ class Form2 extends Component{
             type="date"
             className="form-control"
             {...field.input}
+            defaultValue={new Date().getDate().toLocaleString()}
             />
             <div className="error">
               {field.meta.touched ? field.meta.error:''}
@@ -175,58 +154,68 @@ class Form2 extends Component{
       const colors=[{ color: 'Red', value:'ff0000'},{ color: 'Blue', value:'0000ff'}]
       console.log()
         return(
-            
+            <Card
+              title="Order"
+              content={
                 <div className="Form" >
-                    <div className="top">
-                        <h3>Add a Client</h3>
-                        <Link to="/orderdisplay">Back</Link>
-                    </div>
-            
-                        <div className="form-child" id="left">
-                            <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
-                            <Field
-                                myLabel="Client's Plant Address"
-                                name="address"
-                                component={this.renderInputField}
-                            />
-                            <Field
-                                myLabel="Distance"
-                                name="distance"
-                                component={this.renderInputFloatField}
-                            />
-                            <Field
-                                myLabel="Date of Order"
-                                name="order_date"
-                                component={this.renderInputDateField}
-                            />
-                            <Field 
-                              myLabel="Clients"
-                              name="client"
-                              component={DropdownListField}
-                              data={this.state.client}
-                             // onChange={this.props.handleChange((event)=>this.onChange(event))}
-                             //onChange={(evt)=>{console.log("Changed Value:",evt.target.value);}}
-                              valueField="id"
-                              textField="company_name"
-                            />
-                            {/* <Field name="sex" value="Stanford University" component={this.displayDropDownList} >
-                              
-                              
-                            </Field> */}
-                            {/* <Select
-                              name="client"
-                              value="company_name"
-                              options={this.state.client}
-                              textField="company_name"
-                              onChange={val => console.log(val)}
-                            />     */}
-                            <button type="submit">Submit</button>
-                            </form>
-                            
+                <div className="top">
+                    <h3>Add a Order</h3>
+                    <Link to="/orderdisplay">Back</Link>
+                </div>
+        
+                    <div className="form-child" id="left">
+                        <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
+                        <Field
+                            myLabel="Client's Plant Address"
+                            name="address"
+                            component={this.renderInputField}
+                        />
+                        <Field
+                            myLabel="Distance"
+                            name="distance"
+                            component={this.renderInputFloatField}
+                        />
+                        <Field
+                            myLabel="Date of Order"
+                            name="order_date"
+                            component={this.renderInputDateField}
+                        />
+                        <div>
+                          <label>Clients :</label>
+                          <Field 
+                          myLabel="Clients"
+                          name="client"
+                          component={DropdownListField}
+                          data={this.state.client}
+                         // onChange={this.props.handleChange((event)=>this.onChange(event))}
+                         //onChange={(evt)=>{console.log("Changed Value:",evt.target.value);}}
+                          valueField="id"
+                          textField="company_name"
+                        />
                         </div>
+                        <div><label></label></div>
+                        {/* <Field name="sex" value="Stanford University" component={this.displayDropDownList} >
+                          
+                          
+                        </Field> */}
+                        {/* <Select
+                          name="client"
+                          value="company_name"
+                          options={this.state.client}
+                          textField="company_name"
+                          onChange={val => console.log(val)}
+                        />     */}
+                        <Button bsStyle="info" pullRight fill type="submit">
+                          Submit
+                        </Button>
+                        </form>
                         
                     </div>
-            
+                    
+                </div>
+        
+              }
+            />
         )
     }
 }

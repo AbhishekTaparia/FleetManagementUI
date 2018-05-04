@@ -14,6 +14,7 @@ import "./assets/css/animate.min.css";
 import "./assets/sass/light-bootstrap-dashboard.css?v=1.2.0";
 import "./assets/css/demo.css";
 import "./assets/css/pe-icon-7-stroke.css";
+
 //import './App.css'
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
 
@@ -24,6 +25,7 @@ ReactDOM.render(
       {indexRoutes.map((prop, key) => {
         return <Route to={prop.path} component={prop.component} key={key} />;
       })}
+      
     </Switch>
   </HashRouter>
   </Provider>,

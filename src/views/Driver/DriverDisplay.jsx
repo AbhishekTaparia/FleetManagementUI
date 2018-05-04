@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import add from '../../assets/img/add.png';
+import URL from '../../actions/index';
 class App extends Component {
 
 
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3004/drivers')
+    axios.get(`${URL}/drivers`)
       .then(response=>{
         const driver_data=response.data;
         this.setState({driver_data});
@@ -25,18 +26,18 @@ class App extends Component {
       return driver_data.map((item)=>{
         return(
           <div key={item.id} className="item-list">
-              <div className="title">{item.driver_name}
+              
                 <div >
-                  <Link key={item.id} to={`driverform/${item.id}`} className="link-class">
-                    Edit
+                  <Link key={item.id} to={`driverindividual/${item.id}`} className="link-class">
+                  <div className="title">{item.driver_name}</div>
                   </Link>
-                </div>
+                
               </div>
-              <div className="sender">Joining Date:<span>{item.joining_date}</span></div>
+              {/* <div className="sender">Joining Date:<span>{item.joining_date}</span></div>
               <div className="sender">{item.id_proof}</div>
               <div className="sender">{item.address}</div>
               <div className="sender">{item.mobile_no}</div>
-              <div className="sender">{item.licence_no}</div>
+              <div className="sender">{item.licence_no}</div> */}
           </div>
         )
       })
@@ -48,8 +49,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="top">
-          <h3>Messages</h3>
-          <Link to="/driverform">Add</Link>
+        <h3>&nbsp; &nbsp;Drivers        </h3>
+        <Link to="/driversform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
         </div>
         <div className="messages_container">
           {this.renderList(this.state)}

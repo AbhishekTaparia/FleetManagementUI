@@ -2,18 +2,32 @@ import Dashboard from "../views/Dashboard/Dashboard";
 import UserProfile from "../views/UserProfile/UserProfile";
 import ClientDisplay from "../views/Client/ClientDisplay";
 import ClientForm from "../views/Client/ClientForm";
+import ClientEdit from "../views/Client/ClientEdit";
 import DriverDisplay from "../views/Driver/DriverDisplay";
 import DriverForm from "../views/Driver/DriverForm";
 import FleetDisplay from "../views/Fleet/FleetDisplay";
 import FleetForm from "../views/Fleet/FleetForm";
 import OrderDisplay from "../views/Order/OrderDisplay";
 import OrderForm from "../views/Order/OrderForm";
+import DeliverForm from "../views/Deliver/DeliverForm";
+import DistanceForm from "../views/Distance/DistanceForm";
+import InsuranceForm from "../views/Insurance/InsuranceForm";
+import TaxForm from "../views/Tax/TaxForm";
+import DriverIndividual from "../views/Driver/DriverIndividual";
+import ClientIndividual from '../views/Client/ClientIndividual';
+import FleetIndividual from '../views/Fleet/FleetIndividual';
+import OrderIndividual from '../views/Order/OrderIndividual';
+import TaskForm from '../views/Tasks/TaskForm';
+import TaskDisplay from '../views/Tasks/TaskDisplay';
+import NoteForm from '../views/Note/NoteForm';
+import NoteDisplay from '../views/Note/NoteDisplay';
 // import TableList from "../views/TableList/TableList";
 // import Typography from "../views/Typography/Typography";
 // import Icons from "../views/Icons/Icons";
 // import Maps from "../views/Maps/Maps";
 // import Notifications from "../views/Notifications/Notifications";
 // import Upgrade from "../views/Upgrade/Upgrade";
+
 
 const dashboardRoutes = [
   {
@@ -22,12 +36,7 @@ const dashboardRoutes = [
     icon: "pe-7s-graph",
     component: Dashboard
   },
-  {
-    path: "/user",
-    name: "User Profile",
-    icon: "pe-7s-user",
-    component: UserProfile
-  },
+  
   {
     path: "/clientsdisplay",
     name: "Client Display",
@@ -36,10 +45,11 @@ const dashboardRoutes = [
   },
   {
     path: "/clientsform",
-    name: "Client Form",
+    
     icon: "pe-7s-user",
     component: ClientForm
   },
+  
   {
     path: "/driverdisplay",
     name: "Driver Display",
@@ -48,7 +58,7 @@ const dashboardRoutes = [
   },
   {
     path: "/driverform",
-    name: "Driver Form",
+    
     icon: "pe-7s-user",
     component: DriverForm
   },
@@ -60,7 +70,7 @@ const dashboardRoutes = [
   },
   {
     path: "/fleetform",
-    name: "Fleet Form",
+    
     icon: "pe-7s-user",
     component: FleetForm
   },
@@ -72,10 +82,89 @@ const dashboardRoutes = [
   },
   {
     path: "/orderform",
-    name: "Order Form",
+    
     icon: "pe-7s-user",
     component: OrderForm
   },
+  {
+    path: "/deliverform",
+    name: "Deliver Form",
+    icon: "pe-7s-user",
+    component: DeliverForm
+  },
+  {
+    path: "/distanceform",
+    name: "Distance Form",
+    icon: "pe-7s-user",
+    component: DistanceForm
+  },
+  {
+    path: "/insuranceform",
+    name: "Insurance Form",
+    icon: "pe-7s-user",
+    component: InsuranceForm
+  },
+  {
+    path: "/taxform",
+    name: "Tax Form",
+    icon: "pe-7s-user",
+    component: TaxForm
+  },
+  {
+    path:"/taskdisplay",
+    icon:"pe-7s-user",
+    name:"Task Display",
+    component:TaskDisplay
+  },
+  
+  {
+    path:"/noteadd",
+    icon:"pe-7s-user",
+    name:"Notes",
+    component:NoteForm
+  },
+  {
+    path:"/notedisplay",
+    icon:"pe-7s-user",
+    
+    component:NoteDisplay
+  },
+  {
+    path:"/taskform",
+    icon:"pe-7s-user",
+    
+    component:TaskForm
+  },
+  {
+    path: "/driverindividual/:id",
+    
+    icon: "pe-7s-user",
+    component: DriverIndividual
+  },
+  {
+    path: "/clientindividual/:id",
+    
+    icon: "pe-7s-user",
+    component: ClientIndividual
+  },
+  {
+    path: "/fleetindividual/:id",
+    
+    icon: "pe-7s-user",
+    component: FleetIndividual
+  },
+  {
+    path: "/orderindividual/:id",
+    
+    icon: "pe-7s-user",
+    component: OrderIndividual
+  },
+  {
+    path: "/clientsedit/:id",
+    icon: "pe-7s-user",
+    component: ClientEdit
+  },
+  
   // {
   //   path: "/table",
   //   name: "Table List",

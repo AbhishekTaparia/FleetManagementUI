@@ -1,5 +1,8 @@
 // json-server --watch db.json --port 3004
-const URL = `http://10.20.32.19:8080`
+const URL = `http://10.20.32.199:8080`
+
+export default URL;
+
 export function getClient(){
     const request = fetch(`${URL}/clients`, { method: 'GET'})
                     .then(response => response.json());
@@ -10,8 +13,8 @@ export function getClient(){
 }
 //
 
-export function addClient(values,cb){
-    const request=fetch(`${URL}/clients`,{
+export function addDistance(values,cb){
+    const request=fetch(`${URL}/distance`,{
         method:'POST',
         headers: {
             'Accept': 'application/json',
@@ -27,6 +30,149 @@ export function addClient(values,cb){
             payload:'everything went fine'
     }
 }
+
+export function addInsurance(values,cb){
+    const request=fetch(`${URL}/insurances`,{
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+        }).then(
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_INSURANCE',
+            payload:'everything went fine'
+    }
+}
+
+export function updateClient(id, data) {
+    return fetch(`${URL}/clients/` + id, {
+        method: 'PUT',
+        mode: 'CORS',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
+        return res;
+    }).catch(err => err);
+}
+
+export function driverDetails(id){
+    const request = fetch(`${URL}/driverIndividual?id=${id}`,{method:'GET'})
+    .then(response => response.json())
+
+    console.log(request)
+    return{
+        type:'ADD_CLIENT',
+        payload:request
+    } 
+}
+
+
+export function addTax(values,cb){
+    const request=fetch(`${URL}/taxes`,{
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+        }).then(
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_CLIENT',
+            payload:'everything went fine'
+    }
+}
+
+
+export function addTask(values,cb){
+    const request=fetch(`${URL}/task`,{
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+        }).then(
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_TASK',
+            payload:'everything went fine'
+    }
+}
+
+export function addDeliver(values,cb){
+    const request=fetch(`${URL}/delivers`,{
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+        }).then(
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_CLIENT',
+            payload:'everything went fine'
+    }
+}
+
+export function addClient(values,cb){
+    
+    const request=fetch(`${URL}/clients`,{
+        method:'POST',
+        mode: 'CORS',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        
+        body: JSON.stringify(values)
+        }).then(
+            console.log(JSON.stringify(values))
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_CLIENT',
+            payload:'everything went fine'
+    }
+}
+
+export function addNote(values,cb){
+    
+    const request=fetch(`${URL}/notes`,{
+        method:'POST',
+        mode: 'CORS',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        
+        body: JSON.stringify(values)
+        }).then(
+            console.log(JSON.stringify(values))
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_CLIENT',
+            payload:'everything went fine'
+    }
+}
+
 
 export function getFleets(){
     const request = fetch(`${URL}/fleets`, { method: 'GET'})

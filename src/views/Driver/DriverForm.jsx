@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm} from 'redux-form';
 import { connect } from  'react-redux';
 import { addDriver } from '../../actions/index';
+import axiox from 'axios';
+import URL from '../../actions/index'
+//import ImageLoader from 'react-image-file'
 
+
+import { Card } from "../../components/Card/Card.jsx";
+import Button from "../../components/CustomButton/CustomButton.jsx";
 
 class Form2 extends Component{
 
@@ -18,7 +24,7 @@ class Form2 extends Component{
             <input 
             type="text"
             {...field.input}
-            value="qwee"
+            hint="qwee"
             className="form-control"
             />
             <div className="error">
@@ -38,6 +44,7 @@ class Form2 extends Component{
             type="date"
             {...field.input}
             className="form-control"
+            required
             />
             <div className="error">
               {field.meta.touched ? field.meta.error:''}
@@ -76,7 +83,7 @@ class Form2 extends Component{
             <input 
             type="number"
             {...field.input}
-            value="789456123"
+            hint="789456123"
             className="form-control"
             />
             <div className="error">
@@ -95,15 +102,22 @@ class Form2 extends Component{
     
     render(){
         return(
-            
-                <div className="Form" >
+          <Card
+            title="Driver"
+            content={
+              <div className="Form" >
                     <div className="top">
-                        <h3>Add a Client</h3>
-                        <Link to="/driverdisplay">Back</Link>
+                        
+                        <Link to="/driverdisplay">Display</Link>
                     </div>
             
                         <div className="content" id="left">
                             <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
+                            <Field
+                                myLabel="Driver ID"
+                                name="did"
+                                component={this.renderInputField}
+                            />
                             <Field
                                 myLabel="Driver Name"
                                 name="driver_name"
@@ -134,17 +148,22 @@ class Form2 extends Component{
                                 name="licence_no"
                                 component={this.renderInputFloatField}
                             />
-                            {/* <Field
-                                myLabel="Photo"
-                                name="photo"
-                                component={this.renderInputImageField}
-                            /> */}
+                            <div>
+                              <label>Photo :</label>
+                              <ImageUpload name="photo"/>
+                            </div>
+                            <div><label></label></div>
                             
-                            <button type="submit">Submit</button>
+                            
+                            <Button bsStyle="info" pullRight fill type="submit">
+                          Submit
+                        </Button>
                             </form>
                             
                         </div>
               </div>
+            }
+             />   
         )
     }
 }
@@ -185,3 +204,119 @@ function mapStateToProps(state){
   })(
     connect(mapStateToProps,{addDriver})(Form2)
   )
+
+
+
+
+
+
+
+
+  class ImageUpload extends React.Component {
+    state={
+      selectedFile:null
+    }
+    constructor(props) {
+      super(props);
+      this.state = {file: '',imagePreviewUrl: '',default1:[]};
+    }
+  
+componentDidMount(){
+  let self = this;
+  axiox.get('http://localhost:3004/tests/1')
+        .then(res=>{
+          let source='data:image/jpeg;base64,'+res.data
+          this.setState({default1:source})
+          setTimeout(() => {
+            
+          }, 2000);
+          
+        });
+        //console.log(this.state.default1)
+}
+
+    _handleSubmit(e) {
+      e.preventDefault();
+      // const fd= new FormData();
+      // fd.append('image',this.state.file,this.state.file.name);
+      // TODO: do something with -> this.state.file
+      //console.log('handle uploading-', this.state.file);
+      axiox.post('http://localhost:3004/tests',this.state.file)
+        .then(res =>{
+          console.log(res)
+        });
+        
+    }
+  
+    _handleImageChange(evt) {
+      // e.preventDefault();
+  
+      // let reader = new FileReader();
+      // let file = e.target.files[0];
+  
+      // reader.onloadend = () => {
+      //   this.setState({
+      //     file: file,
+      //     imagePreviewUrl: reader.result
+      //   });
+      // }
+  
+      // reader.readAsDataURL(file)
+      console.log("Uploading");
+      var self = this;
+      var reader = new FileReader();
+      var file = evt.target.files[0];
+      //var file=this.state.default1;
+  
+      reader.onload = function(upload) {
+          self.setState({
+            file:file,
+              imagePreviewUrl: upload.target.result
+          });
+      };
+      reader.readAsDataURL(file);
+      console.log(this.state.imagePreviewUrl);
+      console.log("Uploaded");
+    }
+  
+    
+  
+    render() {
+      let {imagePreviewUrl} = this.state;
+      let $imagePreview = null;
+      if (imagePreviewUrl) {
+        $imagePreview = (<img src={imagePreviewUrl} width='100px' height='75px'/>);
+      } else {
+        $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+      }
+  
+      return (
+        <div className="previewComponent">
+          <form onSubmit={(e)=>this._handleSubmit(e)}>
+          {console.log("value")}
+          <input ref="file" type="file" name="file" 
+                                className="upload-file" 
+                                id="file"
+                                onChange={(e)=>this._handleImageChange(e)} 
+                                //encType="multipart/form-data" 
+                                required/>
+            {/* <input className="fileInput" 
+              type="file" 
+              onChange={(e)=>this._handleImageChange(e)} /> */}
+            <button className="submitButton" 
+              type="submit" 
+              onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+          </form>
+          <div className="imgPreview">
+            {$imagePreview}
+            
+            
+          </div>
+        </div>
+      )
+    }
+  }
+  
+
+
+  

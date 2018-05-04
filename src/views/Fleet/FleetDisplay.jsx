@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-
+import add from '../../assets/img/add.png';
+import URL from '../../actions/index'
 
 class App extends Component {
 
@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3004/fleets')
+    axios.get(`http://10.20.32.199:8080/fleets`)
       .then(response=>{
         const fleet_data=response.data;
         this.setState({fleet_data});
@@ -26,11 +26,18 @@ class App extends Component {
     if(fleet_data){
       return fleet_data.map((item)=>{
         return(
-          <div key={item.id} className="item-list">
-              <div className="title">{item.company_name}</div>
+          <div key={item.fleetid} className="item-list">
+          {/* <div className="title">{item.company_name} */}
+              <div >
+                  <Link key={item.fleetid} to={`fleetindividual/${item.fleetid}`} className="link-class">
+                  <div className="title">{item.fleetId}</div>
+                  </Link>
+                
+              </div>
+              {/* <div className="title">{item.company_name}</div>
               <div className="sender">Wheels:<span>{item.wheels}</span></div>
               <div className="sender">{item.model_no}</div>
-              <div className="sender">{item.owner_name}</div>
+              <div className="sender">{item.owner_name}</div> */}
           </div>
         )
       })
@@ -42,8 +49,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="top">
-          <h3>Messages</h3>
-          <Link to="/fleetform">Add</Link>
+        <h3>&nbsp; &nbsp;Fleets        </h3>
+        <Link to="/fleetsform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
         </div>
         <div className="messages_container">
           {this.renderList(this.state)}

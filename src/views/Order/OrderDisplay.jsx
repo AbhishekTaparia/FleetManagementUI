@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-
+import add from '../../assets/img/add.png';
+import URL from '../../actions/index';
 
 class App extends Component {
 
@@ -15,12 +15,12 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3004/orders')
+    axios.get(`${URL}/orders`)
       .then(response=>{
         const order_data=response.data;
         this.setState({order_data});
       })
-      axios.get('http://localhost:3004/client')
+      axios.get(`${URL}/client`)
       .then(response=>{
         const client_data=response.data;
         this.setState({client_data});
@@ -33,11 +33,19 @@ class App extends Component {
       return order_data.map((item)=>{
           if(item)
         return(
+          
           <div key={item.id} className="item-list">
-              <div className="title">{item.client}</div>
-              <div className="sender">Wheels:<span>{item.distance}</span></div>
-              <div className="sender">{item.order_date}</div>
-              <div className="sender">{item.address}</div>
+              {console.log(item)}
+              <div >
+                  <Link key={item.id} to={`orderindividual/${item.id}`} className="link-class">
+                  <div className="title">{"O0"+item.id}</div>
+                  </Link>
+                
+              </div>
+              {/* <div className="title">{item.company_name}</div>
+              <div className="sender">Wheels:<span>{item.wheels}</span></div>
+              <div className="sender">{item.model_no}</div>
+              <div className="sender">{item.owner_name}</div> */}
           </div>
         )
       })
@@ -49,8 +57,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="top">
-          <h3>Messages</h3>
-          <Link to="/orderform">Add</Link>
+        <h3>&nbsp; &nbsp;Orders        </h3>
+        <Link to="/ordersform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
         </div>
         <div className="messages_container">
           {this.renderList(this.state)}

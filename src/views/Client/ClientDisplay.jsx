@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-
-
+import add from '../../assets/img/add.png';
+import URL from '../../actions/index'
 
 class App extends Component {
 
@@ -14,10 +14,11 @@ class App extends Component {
     }
 
     componentDidMount(){
-      axios.get('http://localhost:3004/clients')
+      axios.get(`${URL}/clients`)
         .then(response=>{
           const client_data=response.data;
           this.setState({client_data});
+          console.log(response.data)
         })
     }
 
@@ -28,11 +29,15 @@ class App extends Component {
     if(client_data){
       return client_data.map((item)=>{
         return(
-          <div key={item.id} className="item-list">
-              <div className="title">{item.company_name}</div>
-              <div className="sender">Contact:<span>{item.contact}</span></div>
-              <div className="sender">{item.address}</div>
-              <div className="sender">{item.owner_name}</div>
+          <div key={item.cid} className="item-list">
+              
+              <div >
+                  <Link key={item.cid} to={`clientindividual/${item.cid}`} className="link-class">
+                  <div className="title">{item.company_name}</div>
+                  </Link>
+                
+              </div>
+              
           </div>
         )
       })
@@ -44,8 +49,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="top">
-          <h3>Messages</h3>
-          <Link to="/clientsform">Add</Link>
+        <h3>&nbsp; &nbsp;Clients        </h3>
+        <Link to="/clientsform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
         </div>
         <div className="messages_container">
             {this.renderList(this.state)}

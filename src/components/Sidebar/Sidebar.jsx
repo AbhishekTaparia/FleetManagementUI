@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 
 import HeaderLinks from "../Header/HeaderLinks.jsx";
 
-import imagine from "../../assets/img/sidebar-3.jpg";
-import logo from "../../assets/img/reactlogo.png";
+import imagine from "../../assets/img/sidebar-6.jpg";
+//import logo from "../../assets/img/reactlogo.png";
+import logo from "../../assets/img/logo.png"
 
 import dashboardRoutes from "../../routes/dashboard.jsx";
 
@@ -47,7 +48,7 @@ class Sidebar extends Component {
             </div>
           </a>
           <a
-            href="https://www.creative-tim.com"
+            href=""
             className="simple-text logo-normal"
           >
             Fleet Management

@@ -4,6 +4,9 @@ import { Field, reduxForm} from 'redux-form';
 import { connect } from  'react-redux';
 import { addFleet } from '../../actions/index'
 
+import { Card } from "../../components/Card/Card.jsx";
+import Button from "../../components/CustomButton/CustomButton.jsx";
+
 class Form2 extends Component{
 
     renderInputField(field){
@@ -70,8 +73,9 @@ class Form2 extends Component{
     
     render(){
         return(
-            
-                <div className="Form" >
+            <Card
+              title="Fleet"
+              content={  <div className="Form" >
                     <div className="top">
                         <h3>Add a Client</h3>
                         <Link to="/fleetdisplay">Back</Link>
@@ -109,14 +113,17 @@ class Form2 extends Component{
                                 name="price"
                                 component={this.renderInputFloatField}
                             />
-                            <button type="submit">Submit</button>
+                            <Button bsStyle="info" pullRight fill type="submit">
+                          Submit
+                        </Button>
                             </form>
                             
                         </div>
                         
                     
                 </div>
-                
+              }
+              />
             
         )
     }
