@@ -18,7 +18,8 @@
     "react-widgets": "^4.2.6",
     "redux": "^3.7.2",
     "redux-form": "^7.3.0",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "yargs": "^11.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -22,12 +22,15 @@ import URL from '../../actions/index'
 import axios from 'axios';
 import road from "../../assets/img/road_PNG12.png"
 
+//const argv = require('yargs').argv
+
 class Dashboard extends Component {
 
 
   constructor(){
     super()
     this.state={
+        //vara:argv[2],
         statcard1:0,
         statcard2:0,
         statcard3:0,
@@ -142,6 +145,8 @@ class Dashboard extends Component {
         this.setState({bar2ChartData});
         //console.log(this.state.barChartData)
         console.log(this.state.bar2ChartData)
+        console.log(this.state.vara)
+        console.log(process.argv[0])
       })
       axios.get(`${URL}/bar3ChartData`)
       .then(response=>{
@@ -152,7 +157,7 @@ class Dashboard extends Component {
       })
       const startdate= new Date("2017-09-01");
       const enddate= new Date("2017-09-30");
-      axios.get(`http://10.20.34.49:8080/orders/reports/monthcount/${startdate}/${enddate}`)
+      axios.get(`${URL}/orders/reports/monthcount/${startdate}/${enddate}`)
       .then(response=>{
         const countOrders=response.data;
         this.setState({countOrders});
@@ -167,21 +172,7 @@ class Dashboard extends Component {
 
   
   
-  inc(){
-    // let my=this;
-    // //console.log(this.state.barApiChartData.length)
-    // for(var i=0;i<my.state.barApiChartData.length;i++){
-    //   my.state.barChartData.labels[i]=my.state.barApiChartData[i][0]
-    //   my.state.barChartData.datasets[0].data[i]=my.state.barApiChartData[i][1]
-    //   //console.log(this.state.barChartData.labels[i])
-     
-    // }
-    // const barChartData=my.state.barChartData
-    // //my.setState({barChartData:my.state.barChartData},)
-    // //this.state.barChartData=barChartData
-    // //setTimeout(this.setState({barChartData}),1000)
-    // console.log(this.state.barChartData)
-  }
+  
 
   createLegend(json) {
     var legend = [];
@@ -204,7 +195,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-car text-warning" />}
                 statsText="&nbsp;&nbsp;&nbsp;&nbsp;No. of Fleets"
-                statsValue="12" //{/*this.state.statcard1*/}
+                statsValue={this.state.vara} //{/*this.state.statcard1*/}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
