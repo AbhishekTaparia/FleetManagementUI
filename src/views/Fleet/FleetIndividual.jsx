@@ -34,17 +34,17 @@ class Car extends Component{
             const path=`#/fleetsedit/${fleet_data.cid}`
             return(
                 <div>
-                <div key={fleet_data.id} className="item-list">
+                <div key={fleet_data.fid} className="item-list">
                     <div className="title">{fleet_data.comapny}</div>
                     <div className="sender">Wheels:<span>{fleet_data.wheels}</span></div>
                     <div className="sender">{fleet_data.model_no}</div>
                     <div className="sender">{fleet_data.fleetPrice}</div>
                     <div className="sender">{new Date(fleet_data.dateOfPurchase).toLocaleDateString()}</div>
                 </div>
-                <Link key={fleet_data.cid} to={`/driversedit/${fleet_data.cid}`} className="link-class">
+                <Link key={fleet_data.fid} to={`/driversedit/${fleet_data.fid}`} className="link-class">
                     <img src={edit} width="30px" height="30px" />
                 </Link>
-                <Link key={fleet_data.cid} to={`/driversdisplay`} className="link-class">
+                <Link key={fleet_data.fid} to={`/driversdisplay`} className="link-class">
                     <img src={delete1} width="30px" height="30px" onClick={this.handleClick}/>
                 </Link>
                 

@@ -101,7 +101,7 @@ class Form2 extends Component{
                             <Field
                                 myLabel="Registration No"
                                 name="registrationNo"
-                                component={this.renderInputFloatField}
+                                component={this.renderInputField}
                             />
                             <Field
                                 myLabel="Model No"

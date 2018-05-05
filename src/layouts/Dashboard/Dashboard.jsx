@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import { style } from "../../variables/Variables.jsx";
-
+import logo from "../../assets/img/logoFull.png"
 import dashboardRoutes from "../../routes/dashboard.jsx";
 
 class Dashboard extends Component {
@@ -106,7 +106,7 @@ class Dashboard extends Component {
           <Header {...this.props} />
           <Switch>
             {dashboardRoutes.map((prop, key) => {
-              if (prop.name === "Notifications")
+              if (prop.name === "DashBoard")
                 return (
                   <Route
                     path={prop.path}

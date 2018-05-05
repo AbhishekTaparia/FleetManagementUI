@@ -1,5 +1,5 @@
 // json-server --watch db.json --port 3004
-const URL = `http://172.20.10.5:8080`
+const URL = `http://10.20.34.164:8080`
 const vara = process.argv[2]
 
 export default URL;

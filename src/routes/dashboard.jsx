@@ -23,6 +23,7 @@ import NoteForm from '../views/Note/NoteForm';
 import NoteDisplay from '../views/Note/NoteDisplay';
 import TripExpForm from '../views/TripExpenses/TripExpenseForm';
 import TripExpDisplay from '../views/TripExpenses/TripExpenseDisplay';
+import Main from '../views/Main/main';
 // import TableList from "../views/TableList/TableList";
 // import Typography from "../views/Typography/Typography";
 // import Icons from "../views/Icons/Icons";
@@ -32,6 +33,7 @@ import TripExpDisplay from '../views/TripExpenses/TripExpenseDisplay';
 
 
 const dashboardRoutes = [
+   
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -206,7 +208,12 @@ const dashboardRoutes = [
   //   icon: "pe-7s-rocket",
   //   component: Upgrade
   // },
-  //{ redirect: true, path: "/", to: "/dashboard", name: "Dashboard" }
+  {
+    path:"/main",
+    name:"Home",
+    component:Main
+  },
+  { redirect: true, path: "/", to: "/main", name: "Main" }
 ];
 
 export default dashboardRoutes;

@@ -29,7 +29,7 @@ class App extends Component {
           <div key={item.fid} className="item-list">
           {/* <div className="title">{item.company_name} */}
               <div >
-                  <Link key={item.fid} to={`/fleetindividual/${item.fid}`} className="link-class">
+                  <Link key={item.fid} to={`/fleetindividual/${item.fleetId}`} className="link-class">
                   <div className="title">{item.comapny+"("+item.registrationNo+")"}</div>
                   </Link>
                 

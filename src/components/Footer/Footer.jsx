@@ -24,7 +24,7 @@ class Footer extends Component {
           </nav>
           <p className="copyright pull-right">
             &copy; {new Date().getFullYear()}{" "}
-            Made for a better incentive
+            OutFleet - Ahmedabad University
           </p>
         </Grid>
       </footer>

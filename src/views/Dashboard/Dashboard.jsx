@@ -35,6 +35,7 @@ class Dashboard extends Component {
         statcard2:0,
         statcard3:0,
         statcard4:0,
+        totalOrders:0,
         barChartData: {},
         pieChartData:{},
         lineChartData:{},
@@ -106,9 +107,11 @@ class Dashboard extends Component {
         const barApiChartData=response.data;
         let client=[];
         let orders=[];
+        let num=0;
         for(var i=0;i<barApiChartData.length;i++){
           client.push(barApiChartData[i][0]);
           orders.push(barApiChartData[i][1]);
+          num=num+barApiChartData[i][1]
         }
         console.log(barApiChartData)
         console.log(client)
@@ -130,6 +133,7 @@ class Dashboard extends Component {
               }
             ]
           },
+          totalOrders:num
         });
         
         console.log(this.state.barChartData)
@@ -168,14 +172,17 @@ class Dashboard extends Component {
           console.log(data1)
         })
       }
+      //data1=[5,2,7,3,4,11,8,9,0,10,12,1]
+      console.log(data1)
+      //data1=[0,0,0,0,1,1,0,1,0,0,0,2]
       console.log("qwertyuiop")
       console.log(data1)
-      this.setState({
+      setTimeout(()=>{this.setState({
         lineChartData: {
           labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"],
           datasets: [
             {
-              label: "Clients",
+              label: "Orders",
               data: data1,
               backgroundColor: [
                 "rgba(255,65,21,0.6)",
@@ -186,7 +193,7 @@ class Dashboard extends Component {
             }
           ]
         },
-      });
+      });},1000)
       
       
       
@@ -256,9 +263,9 @@ class Dashboard extends Component {
               <Card
                 statsIcon="fa fa-history"
                 id="chartHours"
-                title="Users Behavior"
-                category="24 Hours performance"
-                stats="Updated 3 minutes ago"
+                title="Order Per Client"
+                category={"Total Order : "+this.state.totalOrders}
+                stats="Updated Now"
                 content={
                   <div className="ct-chart">
                     {/* <ChartistGraph
@@ -337,7 +344,7 @@ class Dashboard extends Component {
                       options={optionsBar}
                       responsiveOptions={responsiveBar}
                     /> */}
-                    <Bar data={this.state.lineChartData} options={{
+                    <Line data={this.state.lineChartData} options={{
                       title:{
                         display:false,
                         text:'Bar graph',
