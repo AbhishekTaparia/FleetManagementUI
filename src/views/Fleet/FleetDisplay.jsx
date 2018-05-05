@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get(`http://10.20.32.199:8080/fleets`)
+    axios.get(`${URL}/fleets`)
       .then(response=>{
         const fleet_data=response.data;
         this.setState({fleet_data});
@@ -29,8 +29,8 @@ class App extends Component {
           <div key={item.fleetid} className="item-list">
           {/* <div className="title">{item.company_name} */}
               <div >
-                  <Link key={item.fleetid} to={`fleetindividual/${item.fleetid}`} className="link-class">
-                  <div className="title">{item.fleetId}</div>
+                  <Link key={item.fleetid} to={`fleetindividual/${item.id}`} className="link-class">
+                  <div className="title">{item.comapny+"("+item.registrationNo+")"}</div>
                   </Link>
                 
               </div>
@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
         <div className="top">
         <h3>&nbsp; &nbsp;Fleets        </h3>
-        <Link to="/fleetsform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
+        <Link to="/fleetform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
         </div>
         <div className="messages_container">
           {this.renderList(this.state)}

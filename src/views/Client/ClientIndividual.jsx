@@ -32,7 +32,7 @@ class Car extends Component{
 
     componentWillMount(){
         console.log(this.props.match.params.id)
-        //axios.get(`http://localhost:3004/clients?id=${this.props.match.params.id}`)
+        //axios.get(`${URL}/clients?cid=${this.props.match.params.id}`)
         axios.get(`${URL}/clients/${this.props.match.params.id}`)
       .then(response=>{
         const client_data=response.data;
@@ -64,20 +64,20 @@ class Car extends Component{
             //         </div>
             //     )
             // })
-            const path=`#/clientsedit/${client_data.id}`
+            const path=`#/clientsedit/${client_data.cid}`
             return(
                         <div>
-                        <div key={client_data.id} className="item-list">
+                        <div key={client_data.cid} className="item-list">
                             <div className="title"><span>{client_data.company_name}</span></div>
                             <div className="sender">Contact:<span>{client_data.contact}</span></div>
                             <div className="sender">Address:<span>{client_data.address}</span></div>
                             <div className="sender">Owner Name:<span>{client_data.owner_name}</span></div>
                         </div>
                         <div>
-                        <Link key={client_data.cid} to={`/clientsedit/${client_data.id}`} className="link-class">
+                        <Link key={client_data.cid} to={`/clientsedit/${client_data.cid}`} className="link-class">
                             <img src={edit} width="30px" height="30px" />
                         </Link>
-                        <Link key={client_data.id} to={`/clientsdisplay`} className="link-class">
+                        <Link key={client_data.cid} to={`/clientsdisplay`} className="link-class">
                             <img src={delete1} width="30px" height="30px" onClick={this.handleClick}/>
                         </Link>
                         </div>

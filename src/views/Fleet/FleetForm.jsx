@@ -77,15 +77,20 @@ class Form2 extends Component{
               title="Fleet"
               content={  <div className="Form" >
                     <div className="top">
-                        <h3>Add a Client</h3>
+                        <h3>Add a Fleet</h3>
                         <Link to="/fleetdisplay">Back</Link>
                     </div>
                     
                         <div className="form-child" id="left">
                             <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
                             <Field
+                                myLabel="Fleet ID"
+                                name="fleetId"
+                                component={this.renderInputField}
+                            />
+                            <Field
                                 myLabel="Company Name"
-                                name="company_name"
+                                name="comapny"
                                 component={this.renderInputField}
                             />
                             <Field
@@ -94,23 +99,28 @@ class Form2 extends Component{
                                 component={this.renderInputFloatField}
                             />
                             <Field
+                                myLabel="Registration No"
+                                name="registrationNo"
+                                component={this.renderInputFloatField}
+                            />
+                            <Field
                                 myLabel="Model No"
-                                name="model_no"
+                                name="modelNo"
                                 component={this.renderInputFloatField}
                             />
                             <Field
                                 myLabel="Chasis No"
-                                name="chasis_no"
+                                name="chasisNo"
                                 component={this.renderInputFloatField}
                             />
                             <Field
                                 myLabel="Date of Purchase"
-                                name="purchase_date"
+                                name="dateOfPurchase"
                                 component={this.renderInputDateField}
                             />
                             <Field
                                 myLabel="Price"
-                                name="price"
+                                name="fleetprice"
                                 component={this.renderInputFloatField}
                             />
                             <Button bsStyle="info" pullRight fill type="submit">

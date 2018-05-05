@@ -6,6 +6,7 @@ import axios from 'axios';
 import delete1 from '../../assets/img/delete.png';
 import edit from '../../assets/img/edit.png';
 import URL from '../../actions/index'
+import { Link } from 'react-router-dom';
 class Car extends Component{
 
     constructor(){
@@ -17,7 +18,8 @@ class Car extends Component{
 
     componentWillMount(){
         console.log(this.props.match.params.id)
-        axios.get(`${URL}/fleets?id=${this.props.match.params.id}`)
+        //axios.get(`${URL}/fleets?id=${this.props.match.params.id}`)
+        axios.get(`${URL}/fleets/${this.props.match.params.id}`)
       .then(response=>{
         const fleet_data=response.data;
         this.setState({fleet_data});
@@ -29,23 +31,38 @@ class Car extends Component{
 
     renderDetail=({fleet_data})=>{
         if(fleet_data){
-            return fleet_data.map((item)=>{
-                return(
-                    <div>
-                    <div key={item.id} className="item-list">
-                        <div className="title">{item.comapny}</div>
-                        <div className="sender">Wheels:<span>{item.wheels}</span></div>
-                        <div className="sender">{item.model_no}</div>
-                        <div className="sender">{item.fleetPrice}</div>
-                        <div className="sender">{new Date(item.dateOfPurchase).toLocaleDateString()}</div>
-                    </div>
-                    <div><img src={edit} width="30px" height="30px"/>&nbsp;<img src={delete1} width="30px" height="30px"/></div>
-                    
-                    </div>
-                )
-            })
+            const path=`#/fleetsedit/${fleet_data.cid}`
+            return(
+                <div>
+                <div key={fleet_data.id} className="item-list">
+                    <div className="title">{fleet_data.comapny}</div>
+                    <div className="sender">Wheels:<span>{fleet_data.wheels}</span></div>
+                    <div className="sender">{fleet_data.model_no}</div>
+                    <div className="sender">{fleet_data.fleetPrice}</div>
+                    <div className="sender">{new Date(fleet_data.dateOfPurchase).toLocaleDateString()}</div>
+                </div>
+                <Link key={fleet_data.cid} to={`/driversedit/${fleet_data.cid}`} className="link-class">
+                    <img src={edit} width="30px" height="30px" />
+                </Link>
+                <Link key={fleet_data.cid} to={`/driversdisplay`} className="link-class">
+                    <img src={delete1} width="30px" height="30px" onClick={this.handleClick}/>
+                </Link>
+                
+                </div>
+            )
         }
     }
+
+    handleClick = event =>{
+        event.preventDefault();
+        console.log("delete clicked")   
+        axios.delete(`${URL}/fleets/${this.props.match.params.id}`)
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          });
+          
+      }
 
     render(){
         return(
