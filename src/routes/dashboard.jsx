@@ -21,6 +21,8 @@ import TaskForm from '../views/Tasks/TaskForm';
 import TaskDisplay from '../views/Tasks/TaskDisplay';
 import NoteForm from '../views/Note/NoteForm';
 import NoteDisplay from '../views/Note/NoteDisplay';
+import TripExpForm from '../views/TripExpenses/TripExpenseForm';
+import TripExpDisplay from '../views/TripExpenses/TripExpenseDisplay';
 // import TableList from "../views/TableList/TableList";
 // import Typography from "../views/Typography/Typography";
 // import Icons from "../views/Icons/Icons";
@@ -111,6 +113,12 @@ const dashboardRoutes = [
     component: TaxForm
   },
   {
+    path: "/tripexpform",
+    name: "Trip Expense Form",
+    icon: "pe-7s-user",
+    component: TripExpForm
+  },
+  {
     path:"/taskdisplay",
     icon:"pe-7s-user",
     name:"Task Display",
@@ -158,6 +166,12 @@ const dashboardRoutes = [
     
     icon: "pe-7s-user",
     component: OrderIndividual
+  },
+  {
+    path: "/tripexpdisplay",
+    
+    icon: "pe-7s-user",
+    component: TripExpDisplay
   },
   {
     path: "/clientsedit/:id",

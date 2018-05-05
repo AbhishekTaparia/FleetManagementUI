@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import add from '../../assets/img/add.png';
-
+import URL from '../../actions/index';
 
 class App extends Component {
 
@@ -15,12 +15,12 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3004/notes')
+    axios.get(`${URL}/notes`)
       .then(response=>{
         const order_data=response.data;
         this.setState({order_data});
       })
-      axios.get('http://localhost:3004/client')
+      axios.get(`${URL}/client`)
       .then(response=>{
         const client_data=response.data;
         this.setState({client_data});
@@ -37,7 +37,7 @@ class App extends Component {
           <div key={item.id} className="item-list">
               {console.log(item)}
               <div >
-                  <Link key={item.id} to={`noteindividual/${item.id}`} className="link-class">
+                  <Link key={item.noteid} to={`noteindividual/${item.noteid}`} className="link-class">
                   <div className="title">{item.id}</div>
                   </Link>
                 

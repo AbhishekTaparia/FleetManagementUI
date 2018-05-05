@@ -26,10 +26,10 @@ class App extends Component {
     if(fleet_data){
       return fleet_data.map((item)=>{
         return(
-          <div key={item.fleetid} className="item-list">
+          <div key={item.fid} className="item-list">
           {/* <div className="title">{item.company_name} */}
               <div >
-                  <Link key={item.fleetid} to={`fleetindividual/${item.id}`} className="link-class">
+                  <Link key={item.fid} to={`/fleetindividual/${item.fid}`} className="link-class">
                   <div className="title">{item.comapny+"("+item.registrationNo+")"}</div>
                   </Link>
                 

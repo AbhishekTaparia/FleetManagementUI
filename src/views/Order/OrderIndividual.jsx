@@ -6,6 +6,7 @@ import axios from 'axios';
 import delete1 from '../../assets/img/delete.png';
 import edit from '../../assets/img/edit.png';
 import URL from '../../actions/index';
+import {Link} from 'react-router-dom';
 class Car extends Component{
 
     constructor(){
@@ -29,24 +30,38 @@ class Car extends Component{
 
     renderDetail=({order_data})=>{
         if(order_data){
-            return order_data.map((item)=>{
-                return(
-                    <div>
-                    <div key={item.id} className="item-list">
-                        <div className="title">{item.id}</div>
-                        
-                        <div className="sender">{item.address}</div>
-                        
-                        <div className="sender">Distance:<span>{item.distance}</span></div>
-                        
-                        <div className="sender">{item.order_date}</div>
-                    </div>
-                    <div><img src={edit} width="30px" height="30px"/>&nbsp;<img src={delete1} width="30px" height="30px"/></div>
-                    </div>
-                )
-            })
+            return(
+                <div>
+                <div key={order_data.id} className="item-list">
+                    <div className="title">{order_data.id}</div>
+                    
+                    <div className="sender">{order_data.address}</div>
+                    
+                    <div className="sender">Distance:<span>{order_data.distance}</span></div>
+                    
+                    <div className="sender">{order_data.order_date}</div>
+                </div>
+                <Link key={order_data.cid} to={`/ordersedit/${order_data.cid}`} className="link-class">
+                    <img src={edit} width="30px" height="30px" />
+                </Link>
+                <Link key={order_data.cid} to={`/ordersdisplay`} className="link-class">
+                    <img src={delete1} width="30px" height="30px" onClick={this.handleClick}/>
+                </Link>
+                </div>
+            )
         }
     }
+
+    handleClick = event =>{
+        event.preventDefault();
+        console.log("delete clicked")   
+        axios.delete(`${URL}/fleets/${this.props.match.params.id}`)
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          });
+          
+      }
 
     render(){
         return(

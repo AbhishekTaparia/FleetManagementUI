@@ -34,11 +34,11 @@ class App extends Component {
           if(item)
         return(
           
-          <div key={item.id} className="item-list">
+          <div key={item.oid} className="item-list">
               {console.log(item)}
               <div >
-                  <Link key={item.id} to={`orderindividual/${item.id}`} className="link-class">
-                  <div className="title">{"O0"+item.id}</div>
+                  <Link key={item.oid} to={`orderindividual/${item.oid}`} className="link-class">
+                  <div className="title">{item.oid}</div>
                   </Link>
                 
               </div>

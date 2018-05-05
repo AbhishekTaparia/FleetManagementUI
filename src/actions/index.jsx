@@ -1,5 +1,5 @@
 // json-server --watch db.json --port 3004
-const URL = `http://localhost:3004`
+const URL = `http://172.20.10.5:8080`
 const vara = process.argv[2]
 
 export default URL;
@@ -16,6 +16,24 @@ export function getClient(){
 
 export function addDistance(values,cb){
     const request=fetch(`${URL}/distance`,{
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+        }).then(
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_CLIENT',
+            payload:'everything went fine'
+    }
+}
+
+export function addTripExp(values,cb){
+    const request=fetch(`${URL}/tripexp`,{
         method:'POST',
         headers: {
             'Accept': 'application/json',

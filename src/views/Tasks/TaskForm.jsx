@@ -13,7 +13,7 @@ import { Card } from '../../components/Card/Card';
 //import 'react-select/dist/react-select.css';
 //import { Card } from "../../components/Card/Card.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
-
+import URL from "../../actions/index"
 
 
 
@@ -60,7 +60,7 @@ class Form2 extends Component{
 
     componentDidMount(){
         axios
-      .get("http://localhost:3004/clients")
+      .get(`${URL}/clients`)
       .then(response => {
 
         // create an array of contacts only with relevant data

@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    axios.get(`${URL}/task`)
+    axios.get(`${URL}/tasks`)
       .then(response=>{
         const task_data=response.data;
         this.setState({task_data});
@@ -33,7 +33,7 @@ class App extends Component {
     if(task_data){
       return task_data.map((item)=>{
           if(item)
-          {this.state.status=item.task_status === 1 ? "Done" : "Not Done"}
+          {this.state.status=item.taskStatus === 1 ? "Done" : "Not Done"}
         return(
           
           <div key={item.id} className="item-list">
@@ -44,10 +44,10 @@ class App extends Component {
                   </Link>
                 
               </div> */}
-               <div className="title">{item.task_name}</div>
-              <div className="sender">Task Description : <span>{item.task_data}</span></div>
-              <div className="sender">Task Added On :<span>{item.task_added}</span></div>
-              
+              <div className="title">{item.taskId}</div>
+              <div className="sender">Task Description : <span>{item.taskData}</span></div>
+              <div className="sender">Task Added On :<span>{new Date(item.taskAdded).toLocaleDateString()}</span></div>
+              <div className="sender">Task DeadLine :<span>{new Date(item.taskDeadline).toLocaleDateString()}</span></div>
               <div className="sender">Status :<span>{this.state.status}</span></div> 
           </div>
         )

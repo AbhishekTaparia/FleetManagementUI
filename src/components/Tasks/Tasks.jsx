@@ -3,6 +3,7 @@ import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import Checkbox from "../../components/CustomCheckbox/CustomCheckbox.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 import axios from 'axios';
+import URL from '../../actions/index'
 export class Tasks extends Component {
   constructor(){
     super();
@@ -12,7 +13,7 @@ export class Tasks extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:3004/task')
+    axios.get(`${URL}/tasks`)
       .then(response=>{
         const task_data=response.data;
         this.setState({task_data});
@@ -51,18 +52,36 @@ export class Tasks extends Component {
       "Unfollow 5 enemies from twitter"
     ];
     var tasks = [];
-    var number;
+    var number="";
+    var textColor="";
     for (var i = 0; i < this.state.task_data.length; i++) {
+      
+      if(this.state.task_data[i].taskPriority===1){
+        textColor="text-danger"
+      }
+      else if(this.state.task_data[i].taskPriority===2){
+        textColor="text-warning"
+      }
+      else if(this.state.task_data[i].taskPriority===3){
+        textColor="text-success"
+      }
+      else{
+        textColor="text-info"
+      }
+      console.log(textColor)
+      console.log(i)
       number = "checkbox" + i;
       tasks.push(
-        <tr key={i}>
+        <tr key={i}className={textColor}>
           <td>
             <Checkbox
               number={number}
-              isChecked={this.state.task_data[i].task_status === 1 ? true : false}
+              isChecked={this.state.task_data[i].taskStatus === 1 ? true : false}
             />
           </td>
-        <td>{this.state.task_data[i].task_name}</td>
+          
+          <td className={textColor}>{this.state.task_data[i].taskId}</td>
+        
           
           <td className="td-actions text-right">
           <OverlayTrigger placement="top" overlay={edit}>

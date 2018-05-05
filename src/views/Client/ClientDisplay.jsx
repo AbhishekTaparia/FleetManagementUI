@@ -32,7 +32,7 @@ class App extends Component {
           <div key={item.cid} className="item-list">
               
               <div >
-                  <Link key={item.cid} to={`clientindividual/${item.id}`} className="link-class">
+                  <Link key={item.cid} to={`clientindividual/${item.cid}`} className="link-class">
                   <div className="title">{item.company_name}</div>
                   </Link>
                 

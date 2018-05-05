@@ -25,11 +25,11 @@ class App extends Component {
     if(driver_data){
       return driver_data.map((item)=>{
         return(
-          <div key={item.id} className="item-list">
+          <div key={item.did} className="item-list">
               
                 <div >
-                  <Link key={item.id} to={`driverindividual/${item.id}`} className="link-class">
-                  <div className="title">{item.driver_name}</div>
+                  <Link key={item.did} to={`driverindividual/${item.did}`} className="link-class">
+                  <div className="title">{item.dname}</div>
                   </Link>
                 
               </div>
@@ -50,7 +50,7 @@ class App extends Component {
       <div className="App">
         <div className="top">
         <h3>&nbsp; &nbsp;Drivers        </h3>
-        <Link to="/driversform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
+        <Link to="/driverform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
         </div>
         <div className="messages_container">
           {this.renderList(this.state)}

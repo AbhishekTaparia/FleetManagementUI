@@ -37,15 +37,17 @@ class Dashboard extends Component {
         statcard4:0,
         barChartData: {},
         pieChartData:{},
+        lineChartData:{},
         bar2ChartData:{},
         bar3ChartData:{},
         barApiChartData:[],
         pieApiChartData:[],
-        countOrders:0,
+        countOrders:[],
     }
   }
 
   componentDidMount(){
+    console.log(URL)
     axios.get(`${URL}/fleets/total`)
       .then(response=>{
         const statcard1=response.data;
@@ -132,13 +134,7 @@ class Dashboard extends Component {
         
         console.log(this.state.barChartData)
       })
-      // axios.get('http://localhost:3004/barChartData')
-      // .then(response=>{
-      //   const barChartData=response.data;
-      //   this.setState({barChartData});
-      //   console.log(this.state.barChartData)
-      //   console.log(this.state.bar2ChartData)
-      // })
+      
       axios.get(`${URL}/bar2ChartData`)
       .then(response=>{
         const bar2ChartData=response.data;
@@ -155,17 +151,44 @@ class Dashboard extends Component {
         //console.log(this.state.barChartData)
         //console.log(this.state.bar2ChartData)
       })
-      const startdate= new Date("2017-09-01");
-      const enddate= new Date("2017-09-30");
-      axios.get(`${URL}/orders/reports/monthcount/${startdate}/${enddate}`)
-      .then(response=>{
-        const countOrders=response.data;
-        this.setState({countOrders});
-        //console.log(this.state.countOrders)
-        //console.log(this.state.bar2ChartData)
-        //console.log(startdate)
-        //console.log(enddate)
-      })
+
+      let data1=[];
+      for(var i=1;i<=12;i++){
+        const start = "2017-"+i+"-01";
+        console.log(start)
+        const startdate= new Date(start);
+       // 
+        const end = "2017-"+i+"-30";
+        console.log(end)
+        const enddate= new Date(end);
+        axios.get(`${URL}/orders/reports/monthcount/${start}/${end}`)
+        .then(response=>{
+          const countOrders=response.data;
+          data1.push(countOrders)
+          console.log(data1)
+        })
+      }
+      console.log("qwertyuiop")
+      console.log(data1)
+      this.setState({
+        lineChartData: {
+          labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"],
+          datasets: [
+            {
+              label: "Clients",
+              data: data1,
+              backgroundColor: [
+                "rgba(255,65,21,0.6)",
+                "rgba(255,65,21,0.6)",
+                "rgba(255,65,21,0.6)",
+                "rgba(255,65,21,0.6)"
+              ]
+            }
+          ]
+        },
+      });
+      
+      
       
         
   }
@@ -195,7 +218,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-car text-warning" />}
                 statsText="&nbsp;&nbsp;&nbsp;&nbsp;No. of Fleets"
-                statsValue={this.state.vara} //{/*this.state.statcard1*/}
+                statsValue={this.state.statcard1}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
               />
@@ -204,7 +227,7 @@ class Dashboard extends Component {
               <StatsCard
                  bigIcon={<i className="pe-7s-cash text-success" />}
                 statsText="&nbsp;&nbsp;&nbsp;&nbsp;Total Fleet Investment"
-                statsValue= "₹ 12.52 Cr"  //{"₹"+parseFloat(this.state.statcard2.toFixed(2))+" Cr"}
+                statsValue= {"₹"+parseFloat(this.state.statcard2.toFixed(2))+" Cr"}
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
               />
@@ -213,7 +236,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-users text-danger" />}
                 statsText="&nbsp;&nbsp;&nbsp;&nbsp;Total Drivers"
-                statsValue= "10" //{this.state.statcard3+""}
+                statsValue= {this.state.statcard3+""}
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="Updated Now"
               />
@@ -222,7 +245,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-way text-info" />}
                 statsText="&nbsp;&nbsp;&nbsp;&nbsp;Total Distance Travelled"
-                statsValue= "1551 Kms" //{this.state.statcard4+" Kms"}
+                statsValue= {this.state.statcard4+" Kms"}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="In the last hour"
               />
@@ -314,7 +337,7 @@ class Dashboard extends Component {
                       options={optionsBar}
                       responsiveOptions={responsiveBar}
                     /> */}
-                    <Line data={this.state.bar3ChartData} options={{
+                    <Bar data={this.state.lineChartData} options={{
                       title:{
                         display:false,
                         text:'Bar graph',
@@ -323,7 +346,8 @@ class Dashboard extends Component {
                       legend:{
                         display:true,
                         position:'top'
-                      }
+                      },
+                      maintainAspectRatio: false
                     }}/>
                   </div>
                 }

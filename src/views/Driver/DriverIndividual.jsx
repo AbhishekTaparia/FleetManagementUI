@@ -46,19 +46,19 @@ class Car extends Component{
             return(
                 <div>
                 <div key={driver_data.id} className="item-list">
-                    <div className="title">{driver_data.driver_name}
+                    <div className="title">{driver_data.dname}
                         
                     </div>
                     <div className="sender">Joining Date:<span>{driver_data.joining_date}</span></div>
-                    <div className="sender">{driver_data.id_proof}</div>
-                    <div className="sender">{driver_data.address}</div>
-                    <div className="sender">{driver_data.mobile_no}</div>
-                    <div className="sender">{driver_data.licence_no}</div>
+                    <div className="sender">Id Proof :<span>{driver_data.id_proof}</span></div>
+                    <div className="sender">Address :<span>{driver_data.address}</span></div>
+                    <div className="sender">Mobile No :<span>{driver_data.mobile_no}</span></div>
+                    <div className="sender">License No :<span>{driver_data.license_no}</span></div>
                 </div>
-                <Link key={driver_data.cid} to={`/driversedit/${driver_data.cid}`} className="link-class">
+                <Link key={driver_data.did} to={`/driversedit/${driver_data.did}`} className="link-class">
                     <img src={edit} width="30px" height="30px" />
                 </Link>
-                <Link key={driver_data.cid} to={`/driversdisplay`} className="link-class">
+                <Link key={driver_data.did} to={`/driversdisplay`} className="link-class">
                     <img src={delete1} width="30px" height="30px" onClick={this.handleClick}/>
                 </Link>
                 

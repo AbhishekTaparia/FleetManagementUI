@@ -150,7 +150,7 @@ class Form2 extends Component{
                             />
                             <div>
                               <label>Photo :</label>
-                              <ImageUpload name="photo"/>
+                              <ImageUpload name="photo" driverid="did"/>
                             </div>
                             <div><label></label></div>
                             
@@ -223,7 +223,7 @@ function mapStateToProps(state){
   
 componentDidMount(){
   let self = this;
-  axiox.get('http://localhost:3004/tests/1')
+  axiox.get(`${URL}/drivers/${this.props.driverid}/${this.props.name}`)
         .then(res=>{
           let source='data:image/jpeg;base64,'+res.data
           this.setState({default1:source})
@@ -241,7 +241,7 @@ componentDidMount(){
       // fd.append('image',this.state.file,this.state.file.name);
       // TODO: do something with -> this.state.file
       //console.log('handle uploading-', this.state.file);
-      axiox.post('http://localhost:3004/tests',this.state.file)
+      axiox.post(`${URL}/${this.props.driverid}/${this.props.name}`,this.state.file)
         .then(res =>{
           console.log(res)
         });
