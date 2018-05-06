@@ -189,11 +189,11 @@ class Form2 extends Component{
       console.log()
         return(
             <Card
-              title="Order"
+              title="Task"
               content={
                 <div className="Form" >
                 <div className="top">
-                    <h3>Add a Order</h3>
+                    <h3>Add a Task</h3>
                     <Link to="/orderdisplay">Back</Link>
                 </div>
         
@@ -201,28 +201,28 @@ class Form2 extends Component{
                         <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
                         <Field
                             myLabel="Task ID"
-                            name="tid"
+                            name="taskId"
                             component={this.renderInputField}
                         />
                         <Field
                             myLabel="Task Name"
-                            name="task_name"
+                            name="taskName"
                             component={this.renderInputField}
                         />
                         <Field
                             myLabel="Task Description"
-                            name="task_data"
+                            name="taskData"
                             component={this.renderInputField}
                             
                         />
                         <Field
                             myLabel="Task Date"
-                            name="task_added"
+                            name="taskAdded"
                             component={this.renderInputDateField}
                         />
                         <Field
                             myLabel="Task DeadLine Date"
-                            name="task_deadline"
+                            name="taskDeadline"
                             component={this.renderInputDateField}
                             
                         />
@@ -230,7 +230,7 @@ class Form2 extends Component{
                           <label>Task Priority :</label>
                           <Field 
                           myLabel="Task Priority"
-                          name="task_priority"
+                          name="taskPriority"
                           component={DropdownListField}
                           data={this.state.priority}
                          // onChange={this.props.handleChange((event)=>this.onChange(event))}

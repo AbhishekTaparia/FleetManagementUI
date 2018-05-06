@@ -53,7 +53,7 @@ class Form2 extends Component{
         const newContacts = response.data.map(c => {
           return {
             company_name: c.company_name,
-            id: c.id
+            id: c.cid
           };
         });
 
@@ -166,8 +166,13 @@ class Form2 extends Component{
                     <div className="form-child" id="left">
                         <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
                         <Field
+                            myLabel="Order Id"
+                            name="oid"
+                            component={this.renderInputField}
+                        />
+                        <Field
                             myLabel="Client's Plant Address"
-                            name="address"
+                            name="client_plant_address"
                             component={this.renderInputField}
                         />
                         <Field
@@ -184,7 +189,7 @@ class Form2 extends Component{
                           <label>Clients :</label>
                           <Field 
                           myLabel="Clients"
-                          name="client"
+                          name="cid"
                           component={DropdownListField}
                           data={this.state.client}
                          // onChange={this.props.handleChange((event)=>this.onChange(event))}

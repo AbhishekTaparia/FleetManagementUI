@@ -14,9 +14,13 @@ import { Card } from '../../components/Card/Card';
 //import { Card } from "../../components/Card/Card.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 import URL from '../../actions/index'
+import TableDemo from '../../views/Report/ReportTable';
 
 var val;
-
+var tripExpData=[
+  {id: '1', name: 'qwert', value: '2'},
+  {id: 2, name: 'Buster', value: '5'},
+  {id: 3, name: 'George Michael', value: '4'}];
 const DropdownListField = (props) => {
   function handleChange(option) {
   let value = option
@@ -39,20 +43,22 @@ const DropdownListField = (props) => {
        )
 }
 // getTripData(val){
+  //         const tripExp=response.data;
 //     axios.get(`${URL}/tripexp/${val}`)
 //         .then(response=>{
-//         const tripExp=response.data;
 //         this.setState({tripExp});
 //         console.log(response.data)
 //     })
 // }
 class Form2 extends Component{
 
-    state = {
-        tripExp: []
-    };
 
-    
+    constructor(){
+      super()
+      this.state={
+        tripExp: [] 
+      }
+    }
 
     componentDidMount(){
         axios
@@ -84,59 +90,45 @@ class Form2 extends Component{
       
     }
     
-    static getTripData(val){
-        axios.get(`${URL}/tripexpenses/${val}`)
+    static  getTripData(val){
+        axios.get(`${URL}/tripexpense/reports/${val}`)
         .then(response=>{
         const tripExp=response.data;
-        this.setState({tripExp});
+        //this.setState({tripExp});
+        setTimeout(()=>{},1000)
+          tripExpData=tripExp
+          console.log(tripExpData)
+        console.log(val)
         console.log(response.data)
     })
     }
-    onChange(field){
-                
-    }
-
-    onSubmit(values){
-      console.log("Submit")
-      console.log(values)
-        this.props.addTripExp(values,()=>{
-          this.props.history.push('/')
-        })
-    }
-
-    // displayDropDownList(){
-    //     let optionItems = options.map((item) =>
-    //             <option key={item.value}>{item.label}</option>
-    //         );
-
-    //     return (
-    //      <div>
-    //          <select required name="client_name" onChange={val => console.log(val)}>
-    //             {optionItems}
-    //          </select>
-    //      </div>
-    //     )
-    // }
     
-    
-
     render(){
+      var qwert=tripExpData;
+      console.log(qwert)
       const colors=[{ color: 'Red', value:'ff0000'},{ color: 'Blue', value:'0000ff'}]
       console.log()
         return(
             <div>
-                          <label>Delivery :</label>
-                          <Field 
-                          myLabel="Deliver ID"
-                          name="deliver_id"
-                          component={DropdownListField}
-                          data={this.state.client}
-                         // onChange={this.props.handleChange((event)=>this.onChange(event))}
-                         //onChange={(evt)=>{console.log("Changed Value:",evt.target.value);}}
-                         
-                          valueField="id"
-                          textField="company_name"
-                        />
+              <label>Delivery :</label>
+              <Field 
+              myLabel="Deliver ID"
+              name="deliver_id"
+              component={DropdownListField}
+              data={this.state.client}
+              //onChange={this.props.handleChange((event)=>this.onChange(event))}
+              //onChange={(evt)=>{console.log("Changed Value:",evt.target.value);}}
+              
+              valueField="id"
+              textField="company_name"
+            />
+                  
+            <Link key={val} to={`tripexpenseshow/${val}`} className="link-class">
+              {/* <button> Show </button> */}
+              <div className="title">{"Show"}</div> 
+            </Link>
+                               
+
                         </div>
         )
     }
@@ -177,7 +169,7 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({addTripExp} , dispatch);
 }
 
-  export default reduxForm({
+export default reduxForm({
     validate,
     form:'PostOrder'
   })(

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Field, reduxForm} from 'redux-form';
 import { connect } from  'react-redux';
 import { addClient } from '../../actions/index'
-
+import Popup from 'react-popup'
 import { Card } from "../../components/Card/Card.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
 
@@ -32,7 +32,24 @@ class Form2 extends Component{
           </div>
         )
       }
+      renderInputFloatField(field){
+        const className = `form-input ${field.meta.touched && field.meta.error ? 'has-error':''}`
     
+        return(
+          <div className={className}>
+            <label>{field.myLabel}</label>
+            <input 
+            type="number"
+            className="form-control"
+            {...field.input}
+            />
+            <div className="error">
+              {field.meta.touched ? field.meta.error:''}
+            </div>
+          </div>
+        )
+      }
+
 
 
       
@@ -42,6 +59,8 @@ class Form2 extends Component{
         this.props.addClient(values,()=>{
           this.props.history.push('/')
         })
+        Popup.alert('qewretr');
+        
     }
 
     
@@ -70,7 +89,7 @@ class Form2 extends Component{
                         <Field
                             myLabel="Contact"
                             name="contact"
-                            component={this.renderInputField}
+                            component={this.renderInputFloatField}
                         />
                         <Field
                             myLabel="Address"
@@ -113,11 +132,15 @@ function validate(values){
     }
   
     if(!values.contact){
-      errors.contact = "Enter you name"
+      errors.contact = "Enter Contact"
     }
   
     if(!values.address){
       errors.address = "Enter a address"
+    }
+
+    if(Number(values.contact)>1000000000 && Number(values.contact) <10000000000){
+      errors.contact = "Enter correct contact"
     }
   
     if(!values.owner_name){

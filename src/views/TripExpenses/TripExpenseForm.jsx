@@ -185,6 +185,37 @@ class Form2 extends Component{
                             name="miscExp"
                             component={this.renderInputFloatField}
                         />
+                        
+                        <Field
+                            myLabel="Repair Expense"
+                            name="repairExp"
+                            component={this.renderInputFloatField}
+                        />
+                        <Field
+                            myLabel="Toll Expense"
+                            name="tollExp"
+                            component={this.renderInputFloatField}
+                        />
+                        <Field
+                            myLabel="Diesel Expense"
+                            name="dieselExp"
+                            component={this.renderInputFloatField}
+                        />
+                        <Field
+                            myLabel="Daily Allowance"
+                            name="dailyAllowanceExp"
+                            component={this.renderInputFloatField}
+                        />
+                        <Field
+                            myLabel="Border Charges"
+                            name="borderCharges"
+                            component={this.renderInputFloatField}
+                        />
+                        <Field
+                            myLabel="Cash Expense"
+                            name="cashExp"
+                            component={this.renderInputFloatField}
+                        />
                         <div>
                           <label>Delivery :</label>
                           <Field 

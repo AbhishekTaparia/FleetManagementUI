@@ -6,8 +6,10 @@ import axios from 'axios';
 import delete1 from '../../assets/img/delete.png';
 import edit from '../../assets/img/edit.png';
 import ClientEdit from './ClientEdit';
-import { Link } from 'react-router-dom'
-import URL from '../../actions/index'
+import { Link } from 'react-router-dom';
+import URL from '../../actions/index';
+import Popup from 'react-popup';
+var msg="";
 class Car extends Component{
 
     constructor(){
@@ -24,7 +26,9 @@ class Car extends Component{
           .then(res => {
             console.log(res);
             console.log(res.data);
+            msg=res.data.msg
           });
+          
           
       }
       
@@ -64,6 +68,7 @@ class Car extends Component{
             //         </div>
             //     )
             // })
+            
             const path=`#/clientsedit/${client_data.cid}`
             return(
                         <div>
@@ -81,6 +86,7 @@ class Car extends Component{
                             <img src={delete1} width="30px" height="30px" onClick={this.handleClick}/>
                         </Link>
                         </div>
+                        
                         </div>
                     )
         }

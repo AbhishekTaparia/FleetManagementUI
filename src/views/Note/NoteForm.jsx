@@ -201,30 +201,30 @@ class Form2 extends Component{
                         <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
                         <Field
                             myLabel="Note ID"
-                            name="notes_id"
+                            name="notesId"
                             component={this.renderInputField}
                         />
                         <Field
                             myLabel="Note Title"
-                            name="notes_name"
+                            name="notesName"
                             v
                             component={this.renderInputField}
                         />
                         <Field
                             myLabel="Note Description"
-                            name="note_data"
+                            name="noteData"
                             component={this.renderInputField}
                             
                         />
                         <Field
                             myLabel="Note Date"
-                            name="note_added"
+                            name="noteAdded"
                             component={this.renderInputDateField}
                             defaultValue={new Date()}
                         />
                         <Field
                             myLabel="Note Last Edited Date"
-                            name="last_edited"
+                            name="lastEdited"
                             component={this.renderInputDateField}
                             
                         />

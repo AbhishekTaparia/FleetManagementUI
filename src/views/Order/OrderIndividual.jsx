@@ -33,13 +33,12 @@ class Car extends Component{
             return(
                 <div>
                 <div key={order_data.id} className="item-list">
-                    <div className="title">{order_data.id}</div>
+                    <div className="title">{order_data.oid}</div>
+                    <div className="sender">Address :<span>{order_data.address}</span></div>
+                    <div className="sender">Distance :<span>{order_data.distance}</span></div>
+                    <div className="sender">Order Created On :<span>{new Date(order_data.order_date).toLocaleDateString()}</span></div>
+                    <div className="sender">Client :<span>{order_data.cid}</span></div>
                     
-                    <div className="sender">{order_data.address}</div>
-                    
-                    <div className="sender">Distance:<span>{order_data.distance}</span></div>
-                    
-                    <div className="sender">{order_data.order_date}</div>
                 </div>
                 <Link key={order_data.cid} to={`/ordersedit/${order_data.cid}`} className="link-class">
                     <img src={edit} width="30px" height="30px" />
@@ -55,7 +54,7 @@ class Car extends Component{
     handleClick = event =>{
         event.preventDefault();
         console.log("delete clicked")   
-        axios.delete(`${URL}/fleets/${this.props.match.params.id}`)
+        axios.delete(`${URL}/orders/${this.props.match.params.id}`)
           .then(res => {
             console.log(res);
             console.log(res.data);

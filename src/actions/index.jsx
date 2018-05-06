@@ -1,5 +1,5 @@
 // json-server --watch db.json --port 3004
-const URL = `http://10.20.34.164:8080`
+const URL = `http://10.20.32.200:8080`
 const vara = process.argv[2]
 
 export default URL;
@@ -113,7 +113,7 @@ export function addTax(values,cb){
 
 
 export function addTask(values,cb){
-    const request=fetch(`${URL}/task`,{
+    const request=fetch(`${URL}/tasks`,{
         method:'POST',
         headers: {
             'Accept': 'application/json',
@@ -131,7 +131,7 @@ export function addTask(values,cb){
 }
 
 export function addDeliver(values,cb){
-    const request=fetch(`${URL}/delivers`,{
+    const request=fetch(`${URL}/deliveries`,{
         method:'POST',
         headers: {
             'Accept': 'application/json',

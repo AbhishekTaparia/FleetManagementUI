@@ -36,6 +36,8 @@ class Dashboard extends Component {
         statcard3:0,
         statcard4:0,
         totalOrders:0,
+        totalOrder2:0,
+        totalDelivery:0,
         barChartData: {},
         pieChartData:{},
         lineChartData:{},
@@ -79,10 +81,11 @@ class Dashboard extends Component {
         const pieApiChartData=response.data;
         let client=[];
         //console.log(barApiChartData)
+        let num=0;
         console.log(client)
         for(var i=0;i<pieApiChartData.length;i++){
           client.push(pieApiChartData[i].value)
-          
+          num=num+pieApiChartData[i].value
         }
         this.setState({
           pieChartData: {
@@ -98,6 +101,7 @@ class Dashboard extends Component {
               }
             ]
           },
+          totalDelivery:num
         });
         
         console.log(this.state.barChartData)
@@ -139,24 +143,8 @@ class Dashboard extends Component {
         console.log(this.state.barChartData)
       })
       
-      axios.get(`${URL}/bar2ChartData`)
-      .then(response=>{
-        const bar2ChartData=response.data;
-        this.setState({bar2ChartData});
-        //console.log(this.state.barChartData)
-        console.log(this.state.bar2ChartData)
-        console.log(this.state.vara)
-        console.log(process.argv[0])
-      })
-      axios.get(`${URL}/bar3ChartData`)
-      .then(response=>{
-        const bar3ChartData=response.data;
-        this.setState({bar3ChartData});
-        //console.log(this.state.barChartData)
-        //console.log(this.state.bar2ChartData)
-      })
-
       let data1=[];
+      let num=0;
       for(var i=1;i<=12;i++){
         const start = "2017-"+i+"-01";
         console.log(start)
@@ -169,6 +157,7 @@ class Dashboard extends Component {
         .then(response=>{
           const countOrders=response.data;
           data1.push(countOrders)
+          num=num+countOrders
           console.log(data1)
         })
       }
@@ -193,7 +182,8 @@ class Dashboard extends Component {
             }
           ]
         },
-      });},1000)
+        totalOrders2:num
+      });},5000)
       
       
       
@@ -299,8 +289,8 @@ class Dashboard extends Component {
             <Col md={4}>
               <Card
                 statsIcon="fa fa-clock-o"
-                title="Email Statistics"
-                category="Last Campaign Performance"
+                title="Total Delivery"
+                category={"Delivery in hand : "+this.state.totalDelivery}
                 stats="Campaign sent 2 days ago"
                 content={
                   <div
@@ -332,8 +322,8 @@ class Dashboard extends Component {
             <Col md={6}>
               <Card
                 id="chartActivity"
-                title="2014 Sales"
-                category="All products including Taxes"
+                title="Orders per Month"
+                category={"Total Orders in 2017 : "+this.state.totalOrders2}
                 stats="Data information certified"
                 statsIcon="fa fa-check"
                 content={

@@ -23,8 +23,11 @@ import NoteForm from '../views/Note/NoteForm';
 import NoteDisplay from '../views/Note/NoteDisplay';
 import TripExpForm from '../views/TripExpenses/TripExpenseForm';
 import TripExpDisplay from '../views/TripExpenses/TripExpenseDisplay';
+import TripExpShow from '../views/TripExpenses/TripExpenseShow';
 import Main from '../views/Main/main';
-// import TableList from "../views/TableList/TableList";
+import Reports from '../views/Report/ReportDisplay';
+import CityForm from '../views/City/CityForm';
+// import Tabl eList from "../views/TableList/TableList";
 // import Typography from "../views/Typography/Typography";
 // import Icons from "../views/Icons/Icons";
 // import Maps from "../views/Maps/Maps";
@@ -33,7 +36,11 @@ import Main from '../views/Main/main';
 
 
 const dashboardRoutes = [
-   
+  {
+    path:"/main",
+    name:"Home Page",
+    component:Main
+  },
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -134,6 +141,12 @@ const dashboardRoutes = [
     component:NoteForm
   },
   {
+    path:"/cityform",
+    icon:"pe-7s-user",
+    name:"Reports",
+    component:CityForm
+  },
+  {
     path:"/notedisplay",
     icon:"pe-7s-user",
     
@@ -181,6 +194,12 @@ const dashboardRoutes = [
     component: ClientEdit
   },
   
+  {
+    path: "/tripexpenseshow/:id",
+    icon: "pe-7s-user",
+    component: TripExpShow
+  },
+  
   // {
   //   path: "/table",
   //   name: "Table List",
@@ -208,11 +227,7 @@ const dashboardRoutes = [
   //   icon: "pe-7s-rocket",
   //   component: Upgrade
   // },
-  {
-    path:"/main",
-    name:"Home",
-    component:Main
-  },
+  
   { redirect: true, path: "/", to: "/main", name: "Main" }
 ];
 

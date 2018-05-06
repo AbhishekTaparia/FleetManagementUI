@@ -48,7 +48,7 @@ class Form2 extends Component{
                 const newContacts = response.data.map(c => {
                 return {
                     //company_name: c.company_name,
-                    id: c.id
+                    id: c.oid
                 };
                 });
 
@@ -70,8 +70,8 @@ class Form2 extends Component{
                 // create an array of contacts only with relevant data
                 const newContacts = response.data.map(c => {
                 return {
-                    driver_name: c.driver_name,
-                    id: c.id
+                    driver_name: c.dname,
+                    id: c.did
                 };
                 });
 
@@ -93,8 +93,8 @@ class Form2 extends Component{
                 // create an array of contacts only with relevant data
                 const newContacts = response.data.map(c => {
                 return {
-                    company_name: c.company_name,
-                    id: c.id,
+                    company_name: c.registrationNo,
+                    id: c.fleetId,
                     model_no: c.model_no
                 };
                 });
@@ -114,7 +114,24 @@ class Form2 extends Component{
     }
         
         
-  
+    renderInputDateField(field){
+        const className = `form-input ${field.meta.touched && field.meta.error ? 'has-error':''}`
+    
+        return(
+          <div className={className}>
+            <label>{field.myLabel}</label>
+            <input 
+            type="date"
+            className="form-control"
+            {...field.input}
+            defaultValue={new Date().getDate().toLocaleString()}
+            />
+            <div className="error">
+              {field.meta.touched ? field.meta.error:''}
+            </div>
+          </div>
+        )
+      }
 
     renderInputField(field){
 
@@ -160,14 +177,14 @@ class Form2 extends Component{
                         <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
                         <Field
                             myLabel="Delivery ID"
-                            name="deid"
+                            name="deliveryId"
                             component={this.renderInputField}
                         />
                         <div>
-                              <label>Clients :</label>
+                              <label>Order :</label>
                               <Field 
                               myLabel="Order ID"
-                              name="oid"
+                              name="oId"
                               component={DropdownListField}
                               data={this.state.order}
                              // onChange={this.props.handleChange((event)=>this.onChange(event))}
@@ -181,7 +198,7 @@ class Form2 extends Component{
                               <label>Driver :</label>
                               <Field 
                               myLabel="Driver ID"
-                              name="did"
+                              name="dId"
                               component={DropdownListField}
                               data={this.state.driver}
                              // onChange={this.props.handleChange((event)=>this.onChange(event))}
@@ -195,28 +212,40 @@ class Form2 extends Component{
                               <label>Fleet :</label>
                               <Field 
                               myLabel="Fleet ID"
-                              name="fid"
+                              name="fId"
                               component={DropdownListField}
                               data={this.state.fleet}
                               valueField="id"
-                              textField="model_no"
+                              textField="company_name"
                             />
                         </div>
                         <div><label></label></div>
-                        <Field
+                        <div>
+                              <label>Fleet :</label>
+                              <Field 
+                              myLabel="Fleet ID"
+                              name="status"
+                              component={DropdownListField}
+                              data={[{"status":"Completed"},{"status":"Ongoing"}]}
+                              valueField="status"
+                              textField="status"
+                            />
+                        </div>
+                        <div><label></label></div>
+                        {/* <Field
                             myLabel="Status"
                             name="status"
                             component={this.renderInputField}
-                        />
+                        /> */}
                         <Field
                             myLabel="Start Date"
-                            name="start_date"
-                            component={this.renderInputField}
+                            name="delivery_start_date"
+                            component={this.renderInputDateField}
                         />
                         <Field
                             myLabel="End Date"
-                            name="end_date"
-                            component={this.renderInputField}
+                            name="delivery_end_date"
+                            component={this.renderInputDateField}
                         />
                         
                         <div><label></label></div>

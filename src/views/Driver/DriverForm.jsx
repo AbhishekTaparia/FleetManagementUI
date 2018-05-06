@@ -120,7 +120,7 @@ class Form2 extends Component{
                             />
                             <Field
                                 myLabel="Driver Name"
-                                name="driver_name"
+                                name="dname"
                                 component={this.renderInputField}
                             />
                             <Field

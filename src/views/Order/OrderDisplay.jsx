@@ -37,7 +37,7 @@ class App extends Component {
           <div key={item.oid} className="item-list">
               {console.log(item)}
               <div >
-                  <Link key={item.oid} to={`orderindividual/${item.oid}`} className="link-class">
+                  <Link key={item.oid} to={`/orderindividual/${item.oid}`} className="link-class">
                   <div className="title">{item.oid}</div>
                   </Link>
                 
@@ -58,7 +58,7 @@ class App extends Component {
       <div className="App">
         <div className="top">
         <h3>&nbsp; &nbsp;Orders        </h3>
-        <Link to="/ordersform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
+        <Link to="/orderform">&nbsp;&nbsp;&nbsp;<img src={add} width="30px" height="30px"/></Link>
         </div>
         <div className="messages_container">
           {this.renderList(this.state)}
