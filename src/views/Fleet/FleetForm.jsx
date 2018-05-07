@@ -120,7 +120,7 @@ class Form2 extends Component{
                             />
                             <Field
                                 myLabel="Price"
-                                name="fleetprice"
+                                name="fleetPrice"
                                 component={this.renderInputFloatField}
                             />
                             <Button bsStyle="info" pullRight fill type="submit">

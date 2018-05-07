@@ -74,7 +74,7 @@ class Car extends Component{
                         <div>
                         <div key={client_data.cid} className="item-list">
                             <div className="title"><span>{client_data.company_name}</span></div>
-                            <div className="sender">Contact:<span>{client_data.contact}</span></div>
+                            {/* <div className="sender">Contact:<span>{client_data.contact}</span></div> */}
                             <div className="sender">Address:<span>{client_data.address}</span></div>
                             <div className="sender">Owner Name:<span>{client_data.owner_name}</span></div>
                         </div>
