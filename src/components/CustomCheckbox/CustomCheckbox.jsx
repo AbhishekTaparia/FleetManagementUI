@@ -10,6 +10,7 @@ class CustomCheckbox extends Component {
   }
   handleClick() {
     this.setState({ is_checked: !this.state.is_checked });
+    console.log(this.state.is_checked)
   }
   render() {
     const { isChecked, number, label, inline, ...rest } = this.props;

@@ -145,7 +145,7 @@ class Form2 extends Component{
                             />
                             <Field
                                 myLabel="Driving License No"
-                                name="licence_no"
+                                name="license_no"
                                 component={this.renderInputFloatField}
                             />
                             <div>

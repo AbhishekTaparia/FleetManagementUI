@@ -34,7 +34,7 @@ class Car extends Component{
                 <div>
                 <div key={order_data.id} className="item-list">
                     <div className="title">{order_data.oid}</div>
-                    <div className="sender">Address :<span>{order_data.address}</span></div>
+                    <div className="sender">Address :<span>{order_data.client_plant_address}</span></div>
                     <div className="sender">Distance :<span>{order_data.distance}</span></div>
                     <div className="sender">Order Created On :<span>{new Date(order_data.order_date).toLocaleDateString()}</span></div>
                     <div className="sender">Client :<span>{order_data.cid}</span></div>

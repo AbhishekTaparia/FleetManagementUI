@@ -35,8 +35,8 @@ class App extends Component {
               <div >
                   <Link key={item.notesId} to={`noteindividual/${item.notesId}`} className="link-class">
                   <div className="title">{item.notesName+"("+item.notesId+")"}</div>
-                  <div className="sender">Note Description :<span>{item.notedata}</span></div>
-                  <div className="sender">Added On :<span>{new Date(item.noteAdd).toLocaleDateString()}</span></div>
+                  <div className="sender">Note Description :<span>{item.noteData}</span></div>
+                  <div className="sender">Added On :<span>{new Date(item.noteAdded).toLocaleDateString()}</span></div>
                   <div className="sender">Edited On :<span>{new Date(item.lastEdited).toLocaleDateString()}</span></div>
                   
                   </Link>

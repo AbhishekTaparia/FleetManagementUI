@@ -46,14 +46,14 @@ class Form2 extends Component{
 
     componentDidMount(){
         axios
-      .get(`${URL}/delivers`)
+      .get(`${URL}/deliveries`)
       .then(response => {
 
         // create an array of contacts only with relevant data
         const newContacts = response.data.map(c => {
           return {
-            company_name: c.deid,
-            id: c.id
+            company_name: c.deliveryId,
+            id: c.deliveryId
           };
         });
 

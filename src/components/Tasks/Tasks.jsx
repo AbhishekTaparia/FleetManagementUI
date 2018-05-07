@@ -66,7 +66,7 @@ export class Tasks extends Component {
         textColor="text-success"
       }
       else{
-        textColor="text-info"
+        textColor="text-error"
       }
       console.log(textColor)
       console.log(i)
@@ -77,10 +77,11 @@ export class Tasks extends Component {
             <Checkbox
               number={number}
               isChecked={this.state.task_data[i].taskStatus === 1 ? true : false}
+              
             />
           </td>
           
-          <td className={textColor}>{this.state.task_data[i].taskId}</td>
+          <td className={textColor}>{this.state.task_data[i].taskId+" : "+this.state.task_data[i].taskData}</td>
         
           
           <td className="td-actions text-right">

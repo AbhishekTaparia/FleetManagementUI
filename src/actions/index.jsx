@@ -1,5 +1,5 @@
 // json-server --watch db.json --port 3004
-//const URL = `http://10.20.32.200:8080`
+//const URL = `http://10.20.33.107:8080`
 const URL=`http://app-lb-887404008.us-east-1.elb.amazonaws.com`
 const vara = process.argv[2]
 

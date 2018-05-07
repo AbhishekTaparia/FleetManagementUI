@@ -49,7 +49,7 @@ class Car extends Component{
                     <div className="title">{driver_data.dname}
                         
                     </div>
-                    <div className="sender">Joining Date:<span>{driver_data.joining_date}</span></div>
+                    <div className="sender">Joining Date:<span>{new Date(driver_data.joining_date).toLocaleDateString()}</span></div>
                     <div className="sender">Id Proof :<span>{driver_data.id_proof}</span></div>
                     <div className="sender">Address :<span>{driver_data.address}</span></div>
                     <div className="sender">Mobile No :<span>{driver_data.mobile_no}</span></div>

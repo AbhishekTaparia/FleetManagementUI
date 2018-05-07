@@ -10,6 +10,7 @@ import Button from "../../components/CustomButton/CustomButton.jsx";
 import axios from 'axios';
 import {DropdownList} from 'react-widgets';
 import 'react-widgets/dist/css/react-widgets.css';
+import URL from'../../actions/index';
 
 
 
@@ -62,6 +63,7 @@ class Form2 extends Component{
         // store the new state object in the component's state
         this.setState(newState);
         console.log(this.state)
+        console.log(URL)
       })
       .catch(error => console.log(error));
     }

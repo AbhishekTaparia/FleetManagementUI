@@ -291,7 +291,7 @@ class Dashboard extends Component {
                 statsIcon="fa fa-clock-o"
                 title="Total Delivery"
                 category={"Delivery in hand : "+this.state.totalDelivery}
-                stats="Campaign sent 2 days ago"
+                stats="Updated now"
                 content={
                   <div
                     id="chartPreferences"
@@ -355,7 +355,7 @@ class Dashboard extends Component {
             <Col md={6}>
               <Card
                 title="Tasks"
-                category="Backend development"
+                category=""
                 stats="Updated now"
                 statsIcon="fa fa-history"
                 content={
