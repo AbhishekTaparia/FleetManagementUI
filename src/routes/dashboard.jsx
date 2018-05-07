@@ -128,6 +128,13 @@ const dashboardRoutes = [
     component: TripExpForm
   },
   {
+    path:"/cityform",
+    icon:"pe-7s-user",
+    name:"CityForm",
+    component:CityForm
+  },
+  
+  {
     path:"/taskdisplay",
     icon:"pe-7s-user",
     name:"Task Display",
@@ -140,12 +147,7 @@ const dashboardRoutes = [
     name:"Notes",
     component:NoteForm
   },
-  {
-    path:"/cityform",
-    icon:"pe-7s-user",
-    name:"Reports",
-    component:CityForm
-  },
+  
   {
     path:"/notedisplay",
     icon:"pe-7s-user",
