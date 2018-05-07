@@ -119,12 +119,10 @@ class Form2 extends Component{
     render(){
         return(
             <Card
-              title="Client"
+              title="City"
               content={
                 <div className="Form" >
-                <div className="top">
-                    <Link to="/clientsdisplay">Display</Link>
-                </div>
+                
                 
                     <div className="content" id="left">
                         <form onSubmit={this.props.handleSubmit((event)=>this.onSubmit(event))}>
