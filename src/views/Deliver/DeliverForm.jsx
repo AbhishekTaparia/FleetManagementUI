@@ -221,9 +221,9 @@ class Form2 extends Component{
                         </div>
                         <div><label></label></div>
                         <div>
-                              <label>Fleet :</label>
+                              <label>Status :</label>
                               <Field 
-                              myLabel="Fleet ID"
+                              myLabel="Status"
                               name="status"
                               component={DropdownListField}
                               data={[{"status":"Completed"},{"status":"Ongoing"}]}
