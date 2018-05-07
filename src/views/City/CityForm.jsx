@@ -2,14 +2,36 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Field, reduxForm} from 'redux-form';
 import { connect } from  'react-redux';
-import { addCity } from '../../actions/index'
+//import { addCity } from '../../actions/index'
+import {addCity} from '../../actions/index';
 import Popup from 'react-popup'
 import { Card } from "../../components/Card/Card.jsx";
 import Button from "../../components/CustomButton/CustomButton.jsx";
+import axios from 'axios';
+import {DropdownList} from 'react-widgets';
+import 'react-widgets/dist/css/react-widgets.css';
 
 
 
-
+const DropdownListField = (props) => {
+    function handleChange(option) {
+    let value = option
+  
+    const {valueField} = props
+  
+    if (valueField) {
+      value = option[valueField]
+    }
+  
+    props.input.onChange(value)
+    console.log(option)
+  }
+   
+         return (
+         <DropdownList {...props} value={props.input.value} onChange={handleChange}  />
+         )
+  }
+  
 class Form2 extends Component{
 
     state = {

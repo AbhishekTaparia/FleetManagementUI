@@ -112,6 +112,26 @@ export function addTax(values,cb){
 }
 
 
+
+export function addCity(values,cb){
+    const request=fetch(`${URL}/cities`,{
+        method:'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+        }).then(
+          //  () => cb()
+        )
+
+        return {
+            type:'ADD_TASK',
+            payload:'everything went fine'
+    }
+}
+
+
 export function addTask(values,cb){
     const request=fetch(`${URL}/tasks`,{
         method:'POST',
